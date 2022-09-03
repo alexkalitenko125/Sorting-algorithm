@@ -1,0 +1,53 @@
+"""
+qsort
+"""
+
+import random 
+
+a = list(map(int,input().split()))
+
+
+
+def qsort(A):
+    if len(A)<=1:
+        return A
+    
+    q = random.choice(A)
+    L = []
+    H = []
+    M = []
+    for n in A:
+        if n < q:
+            L.append(n)
+        elif n > q:
+            H.append(n)
+        else: 
+            M.append(n)
+    
+    return qsort(L) + M + qsort(H)
+
+print(qsort(a))                
+
+
+
+"""
+qsort inplace
+"""
+
+def qsort(A,l,r):
+    if l>=r:
+        return A
+    
+    m = partition(A,l,r)
+    qsort(A,l,m-1)
+    qsort(A,m+1,r)
+    
+def partition(A,l,r):
+    x = A[l]
+    j = l
+    for i in range(l+1, r):
+        if A[i] <= x:
+            j+=1
+            A[j], A[i] = A[i], A[j]
+    A[l], A[j] = A[j], A[l]
+    return j
