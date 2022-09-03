@@ -1,0 +1,47 @@
+"""
+Merge sort
+"""
+
+
+a = list(map(int,input().split()))
+
+n = len(a)
+
+def Merge(A,B):
+    n1 = len(A)
+    n2 = len(B)
+    
+    C = [0]*(n1+n2)
+    
+    k = 0
+    l = 0
+    i = 0
+    
+    while k<n1 and l<n2:
+        if A[k] < B[l]:
+            C[i] = A[k]
+            k += 1
+            i +=1
+        else: 
+            C[i] = B[l]
+            l += 1
+            i += 1
+            
+    while k<n1:
+        C[i] = A[k]
+        i += 1
+        k += 1
+    while l<n2:
+        C[i] = B[l]
+        i += 1
+        l += 1
+        
+    return C
+        
+def MergeSort(D):
+    if len(D)==1:
+        return D
+    n = len(D)
+    return Merge(MergeSort(D[:n//2]), MergeSort(D[n//2:]))
+
+print(MergeSort(a))        
