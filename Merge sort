@@ -5,7 +5,7 @@ Merge sort
 
 a = list(map(int,input().split()))
 
-n = len(a)
+
 
 def Merge(A,B):
     n1 = len(A)
